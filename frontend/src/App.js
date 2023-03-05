@@ -1,10 +1,19 @@
-import './App.css';
-import AllNotes from './components/AllNotes';
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import AllNotes from "./components/AllNotes";
 
 function App() {
   return (
     <div className="App">
-     <AllNotes/>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route path={"/signup"} component={Signup} exact />
+          <Route path={"/allNotes"} component={AllNotes} />
+        </Switch>
+      </Router>
     </div>
   );
 }
