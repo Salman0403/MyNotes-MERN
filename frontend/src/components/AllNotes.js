@@ -2,7 +2,7 @@ import React from 'react'
 
 const AllNotes = () =>{
     return(
-        <h1>My All Notes</h1>
+        <h1>My All Notes component</h1>
     )
 }
 
