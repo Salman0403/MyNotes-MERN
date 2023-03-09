@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 const getAllNotes = asyncHandler(async (req, res) => {
   console.log("InsideNoteController");
-  const notes = await Notes.find({user: req.user._id});
+  const notes = await Notes.find({ user: req.user._id });
   res.json(notes);
 });
 
@@ -19,4 +19,14 @@ const createNote = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getAllNotes, createNote };
+const getNoteById = asyncHandler(async (req, res) => {
+  const note = await Notes.findById(req.params.id);
+
+  if (note) {
+    res.json(note);
+  } else {
+    res.status();
+  }
+});
+
+module.exports = { getAllNotes, createNote, getNoteById };
