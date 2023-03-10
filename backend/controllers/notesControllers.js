@@ -34,7 +34,7 @@ const updateNote = asyncHandler(async (req, res) => {
   const note = await Notes.findById(req.params.id);
 
   if (note.user.toString() !== req.user._id.toString()) {
-    res.json(note);
+    res.status(401);
     throw new Error("Unauthorized user! you cannot perform this action.");
   }
   if (note) {
@@ -43,11 +43,32 @@ const updateNote = asyncHandler(async (req, res) => {
     note.category = category;
 
     const updatedNote = await note.save();
-    res.json(updatedNote)
-  }else{
-    res.status(404)
-    throw new Error('Note not found.')
+    res.json(updatedNote);
+  } else {
+    res.status(404);
+    throw new Error("Note not found.");
   }
 });
 
-module.exports = { getAllNotes, createNote, getNoteById, updateNote };
+const deleteNote = asyncHandler(async (req, res) => {
+  const note = await Notes.findById(req.params.id);
+  if (note.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("You cannot perform this action.");
+  }
+  if (note) {
+    await Notes.findByIdAndRemove(req.params.id);
+    res.json({ message: "Note removed successfully" });
+  } else {
+    res.status(404);
+    throw new Error("Note not found.");
+  }
+});
+
+module.exports = {
+  getAllNotes,
+  createNote,
+  getNoteById,
+  updateNote,
+  deleteNote,
+};
