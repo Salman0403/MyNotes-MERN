@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Row, Col } from "antd";
-import { BasicField } from "../../components/InputFields/BasicField";
+import { BasicField, BasicButton } from "../../components";
+import "./style.css";
 
 const Login = () => {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
+  console.log("State", state);
   return (
-    <Row
-      style={{ background: "red", height: "100vh" }}
-      justify="center"
-      align="middle"
-    >
-      <Col style={{ background: "blue" }}>
-        <Row gutter={[10, 10]} style={{ background: "green" }} justify="center">
-          <Col span={24} style={{ background: "orange" }}>
+    <Row style={{ height: "100vh" }} justify="center" align="middle">
+      <Col span={10}>
+        <Row
+          gutter={[10, 10]}
+          className="loginFormBox"
+          style={{ borderRadius: "10px", padding: "10px" }}
+          justify="center"
+        >
+          <Col span={24}>
             <h1>Login Form</h1>
           </Col>
           <Col span={16}>
-            <BasicField type="email" placeholder="Enter your email" />
+            <BasicField
+              className="inputField"
+              type="email"
+              placeholder="Enter your email"
+              onChange={(e) => setState({ ...state, email: e.target.value })}
+            />
           </Col>
           <Col span={16}>
-            <BasicField type="password" placeholder="Enter your password" />
+            <BasicField
+              className="inputField"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) => setState({ ...state, password: e.target.value })}
+            />
           </Col>
           <Col span={24}>
-            <button>Submit</button>
+            <BasicButton
+              text="Submit"
+              className="btnLogin"
+              onClick={() => alert()}
+            />
           </Col>
         </Row>
       </Col>

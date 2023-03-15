@@ -1,6 +1,6 @@
 import { Row, Col, Input } from "antd";
 
-export const BasicField = (props) => {
+const BasicField = (props) => {
   console.log("BasicField_props: ", props);
   return (
     <Col span={24}>
@@ -8,3 +8,4 @@ export const BasicField = (props) => {
     </Col>
   );
 };
+export default BasicField;
