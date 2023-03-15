@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import AllNotes from "./components/AllNotes";
+import Login from "./container/Login/Login";
+import Signup from "./container/Signup/Signup";
+import AllNotes from "./container/AllNotes";
 
 function App() {
   return (
