@@ -5,11 +5,13 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const notesRoutes = require("./routes/notesRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const cors = require('cors');
 
 const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
+app.use(cors())
 
 const PORT = process.env.PORT || 5000;
 
